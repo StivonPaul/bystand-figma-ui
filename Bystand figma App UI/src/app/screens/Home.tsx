@@ -1,14 +1,23 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { MapPin, Shield, CheckCircle, Clock, Star } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import ctaImage from "../../imports/cta-image.jpg";
 import teamMember4 from "../../imports/team-member-4.jpg";
+import logoHeartSvg from "../../imports/logo-heart.svg";
 
 export function Home() {
   const navigate = useNavigate();
+  const [aiRipple, setAiRipple] = useState(false);
+
+  const handleAiBubbleClick = () => {
+    setAiRipple(true);
+    setTimeout(() => setAiRipple(false), 600);
+    // TODO: open AI assistant
+  };
 
   return (
-    <div className="px-4 pb-6">
+    <div className="px-4 pb-6 relative">
       {/* Greeting Section */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-1">Hello, User 👋</h1>
@@ -51,7 +60,6 @@ export function Home() {
           <h2 className="text-lg font-bold text-gray-900">Nearby Availability</h2>
           <MapPin className="w-5 h-5 text-blue-600" />
         </div>
-        
         <div className="grid grid-cols-2 gap-3">
           {[1, 2].map((i) => (
             <div key={i} className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
@@ -78,19 +86,10 @@ export function Home() {
             View All
           </button>
         </div>
-
         <div className="space-y-3">
           {[
-            {
-              title: "Patient Care Support",
-              desc: "24/7 bedside assistance",
-              image: ctaImage,
-            },
-            {
-              title: "Elderly Assistance",
-              desc: "Compassionate care for seniors",
-              image: teamMember4,
-            },
+            { title: "Patient Care Support", desc: "24/7 bedside assistance", image: ctaImage },
+            { title: "Elderly Assistance", desc: "Compassionate care for seniors", image: teamMember4 },
           ].map((service, idx) => (
             <div
               key={idx}
@@ -143,6 +142,26 @@ export function Home() {
       >
         <p className="font-medium">Want to become a ByStander?</p>
         <p className="text-sm text-purple-100">Join & Earn with Us</p>
+      </button>
+
+      {/* AI Floating Chat Bubble — fixed bottom-right, Home page only */}
+      <button
+        onClick={handleAiBubbleClick}
+        aria-label="Open AI assistant"
+        className="fixed bottom-24 right-5 z-50 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center"
+        style={{
+          boxShadow: aiRipple
+            ? "0 0 0 12px rgba(37,99,235,0.15), 0 0 0 24px rgba(37,99,235,0.07), 0 4px 16px rgba(0,0,0,0.12)"
+            : "0 4px 16px rgba(0,0,0,0.12)",
+          transition: "box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.15s ease",
+          transform: aiRipple ? "scale(0.93)" : "scale(1)",
+        }}
+      >
+        <img
+          src={logoHeartSvg}
+          alt="AI Assistant"
+          className="w-7 h-7 object-contain"
+        />
       </button>
     </div>
   );

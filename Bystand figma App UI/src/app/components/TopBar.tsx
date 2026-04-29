@@ -1,4 +1,5 @@
 import { Menu } from "lucide-react";
+import logoSvg from "../../imports/logo.svg";
 
 interface TopBarProps {
   onMenuClick: () => void;
@@ -10,15 +11,16 @@ export function TopBar({ onMenuClick }: TopBarProps) {
       <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
         <div className="w-8"></div>
         <div className="flex items-center justify-center">
-          <img 
-            src="/src/imports/Bystand_logo.png" 
-            alt="ByStand Logo" 
-            className="h-12 w-auto object-contain"
+          <img
+            src={logoSvg}
+            alt="ByStand Logo"
+            className="h-10 w-auto object-contain"
           />
         </div>
-        <button 
+        <button
           onClick={onMenuClick}
           className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
+          aria-label="Open menu"
         >
           <div className="flex flex-col gap-1">
             <div className="w-5 h-0.5 bg-gray-800"></div>

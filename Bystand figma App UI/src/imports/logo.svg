@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <g>
+    <path d="M18 12C13.5 12 10 15.6 10 20.1c0 7.2 8 13.9 8 13.9s8-6.7 8-13.9C26 15.6 22.5 12 18 12z" fill="#2563EB"/>
+    <text x="32" y="28" font-family="sans-serif" font-weight="700" font-size="18" fill="#111827">ByStand</text>
+  </g>
+</svg>
