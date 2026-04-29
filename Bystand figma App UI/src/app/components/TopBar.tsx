@@ -1,0 +1,32 @@
+import { Menu } from "lucide-react";
+
+interface TopBarProps {
+  onMenuClick: () => void;
+}
+
+export function TopBar({ onMenuClick }: TopBarProps) {
+  return (
+    <div className="fixed top-0 left-0 right-0 bg-white border-b border-gray-100 z-40">
+      <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="w-8"></div>
+        <div className="flex items-center justify-center">
+          <img 
+            src="/src/imports/Bystand_logo.png" 
+            alt="ByStand Logo" 
+            className="h-12 w-auto object-contain"
+          />
+        </div>
+        <button 
+          onClick={onMenuClick}
+          className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
+        >
+          <div className="flex flex-col gap-1">
+            <div className="w-5 h-0.5 bg-gray-800"></div>
+            <div className="w-3 h-0.5 bg-gray-800 ml-auto"></div>
+            <div className="w-5 h-0.5 bg-gray-800"></div>
+          </div>
+        </button>
+      </div>
+    </div>
+  );
+}
