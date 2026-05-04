@@ -1,5 +1,5 @@
 import { Menu } from "lucide-react";
-import logoSvg from "../../imports/logo.svg";
+import logoWordmarkSvg from "../../imports/logo-wordmark.svg";
 
 interface TopBarProps {
   onMenuClick: () => void;
@@ -7,26 +7,30 @@ interface TopBarProps {
 
 export function TopBar({ onMenuClick }: TopBarProps) {
   return (
-    <div className="fixed top-0 left-0 right-0 bg-white border-b border-gray-100 z-40">
-      <div className="max-w-md mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="w-8"></div>
-        <div className="flex items-center justify-center">
+    <div className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md border-b border-black/[0.06] z-40">
+      <div className="max-w-md mx-auto px-4 h-14 flex items-center justify-between">
+        {/* Spacer left = same width as menu button so logo centres perfectly */}
+        <div className="w-9 h-9" />
+
+        {/* Logo — constrained width so full wordmark is always visible */}
+        <div className="flex-1 flex items-center justify-center overflow-visible">
           <img
-            src={logoSvg}
-            alt="ByStand Logo"
-            className="h-10 w-auto object-contain"
+            src={logoWordmarkSvg}
+            alt="ByStand"
+            className="h-7 w-auto max-w-[120px] object-contain select-none"
+            draggable={false}
           />
         </div>
+
+        {/* Minimalist hamburger */}
         <button
           onClick={onMenuClick}
-          className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
+          className="w-9 h-9 flex flex-col items-end justify-center gap-[5px] hover:opacity-70 transition-opacity"
           aria-label="Open menu"
         >
-          <div className="flex flex-col gap-1">
-            <div className="w-5 h-0.5 bg-gray-800"></div>
-            <div className="w-3 h-0.5 bg-gray-800 ml-auto"></div>
-            <div className="w-5 h-0.5 bg-gray-800"></div>
-          </div>
+          <span className="block w-5 h-[1.5px] bg-gray-800 rounded-full" />
+          <span className="block w-3 h-[1.5px] bg-gray-800 rounded-full" />
+          <span className="block w-5 h-[1.5px] bg-gray-800 rounded-full" />
         </button>
       </div>
     </div>

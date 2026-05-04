@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
-import logoSvg from "../../imports/logo.svg";
+import logoWordmarkSvg from "../../imports/logo-wordmark.svg";
 
 export function Splash() {
   const navigate = useNavigate();
@@ -9,25 +9,27 @@ export function Splash() {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/onboarding-1");
-    }, 2000);
+    }, 2200);
     return () => clearTimeout(timer);
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-200 dark:from-gray-900 dark:via-blue-950 dark:to-blue-900 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/60 to-blue-100/80 flex items-center justify-center">
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
+        initial={{ scale: 0.85, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col items-center"
       >
-        <div className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl dark:bg-white/5">
-          <img
-            src={logoSvg}
-            alt="ByStand Logo"
-            className="h-24 w-auto object-contain dark:brightness-110"
-          />
-        </div>
+        <motion.img
+          src={logoWordmarkSvg}
+          alt="ByStand"
+          className="h-12 w-auto max-w-[200px] object-contain select-none"
+          draggable={false}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+        />
       </motion.div>
     </div>
   );

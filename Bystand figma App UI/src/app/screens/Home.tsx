@@ -1,168 +1,110 @@
-import { useState } from "react";
 import { useNavigate } from "react-router";
-import { MapPin, Shield, CheckCircle, Clock, Star } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import ctaImage from "../../imports/cta-image.jpg";
 import teamMember4 from "../../imports/team-member-4.jpg";
-import logoHeartSvg from "../../imports/logo-heart.svg";
 
 export function Home() {
   const navigate = useNavigate();
-  const [aiRipple, setAiRipple] = useState(false);
-
-  const handleAiBubbleClick = () => {
-    setAiRipple(true);
-    setTimeout(() => setAiRipple(false), 600);
-    // TODO: open AI assistant
-  };
 
   return (
-    <div className="px-4 pb-6 relative">
-      {/* Greeting Section */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-1">Hello, User 👋</h1>
-        <p className="text-gray-600">How can we help you today?</p>
+    <div className="px-4 pb-6">
+      {/* Greeting */}
+      <div className="pt-5 mb-5">
+        <h1 className="text-xl font-bold text-gray-900 mb-0.5">Hello, User 👋</h1>
+        <p className="text-sm text-gray-500">How can we help you today?</p>
       </div>
 
-      {/* Trust Banner */}
-      <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-3xl p-6 mb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="bg-blue-600 rounded-full p-2">
-            <Shield className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <p className="text-sm text-gray-600">Trusted by</p>
-            <p className="text-xl font-bold text-gray-900">100+ families</p>
-          </div>
+      {/* Trust banner */}
+      <div className="rounded-3xl p-5 mb-5 flex items-center gap-4"
+        style={{
+          background: "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
+          border: "1px solid rgba(29,111,243,0.12)",
+        }}>
+        <div className="w-10 h-10 rounded-2xl flex items-center justify-center shrink-0"
+          style={{ background: "var(--color-primary)" }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
         </div>
-        <p className="text-sm text-gray-700 mt-2">
-          Professional support when you need it most
-        </p>
+        <div>
+          <p className="text-xs text-blue-600 font-medium">Trusted by</p>
+          <p className="text-lg font-bold text-gray-900">100+ families</p>
+        </div>
       </div>
 
       {/* Primary CTA */}
       <button
         onClick={() => navigate("/booking")}
-        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-3xl p-6 mb-6 shadow-lg"
+        className="w-full rounded-3xl p-5 mb-5 text-white text-left transition-all hover:opacity-95 active:scale-[0.99]"
+        style={{
+          background: "linear-gradient(135deg, #1d6ff3 0%, #1558d0 100%)",
+          boxShadow: "0 8px 32px rgba(29,111,243,0.28)",
+        }}
       >
         <div className="flex items-center justify-between">
-          <div className="text-left">
-            <h2 className="text-2xl font-bold mb-1">Book a ByStander</h2>
-            <p className="text-blue-100">Available in 30-60 minutes</p>
+          <div>
+            <h2 className="text-lg font-bold mb-0.5">Book a ByStander</h2>
+            <p className="text-sm text-blue-100">Available in 30–60 minutes</p>
           </div>
-          <Clock className="w-8 h-8" />
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 3" />
+          </svg>
         </div>
       </button>
 
-      {/* Nearby Availability */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-gray-900">Nearby Availability</h2>
-          <MapPin className="w-5 h-5 text-blue-600" />
+      {/* Services */}
+      <div className="mb-5">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-bold text-gray-900">Our Services</h2>
+          <button onClick={() => navigate("/app/services")} className="text-xs font-medium" style={{ color: "var(--color-primary)" }}>View all</button>
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          {[1, 2].map((i) => (
-            <div key={i} className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
-              <div className="w-12 h-12 bg-gray-200 rounded-full mb-3"></div>
-              <p className="font-medium text-gray-900 mb-1">Available Now</p>
-              <p className="text-sm text-gray-500">2.5 km away</p>
-              <div className="flex items-center gap-1 mt-2">
-                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                <span className="text-sm font-medium">4.8</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Service Cards */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-gray-900">Our Services</h2>
-          <button
-            onClick={() => navigate("/app/services")}
-            className="text-blue-600 text-sm font-medium"
-          >
-            View All
-          </button>
-        </div>
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {[
             { title: "Patient Care Support", desc: "24/7 bedside assistance", image: ctaImage },
             { title: "Elderly Assistance", desc: "Compassionate care for seniors", image: teamMember4 },
           ].map((service, idx) => (
-            <div
-              key={idx}
-              onClick={() => navigate("/booking")}
-              className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex cursor-pointer hover:shadow-md transition-shadow"
-            >
-              <ImageWithFallback
-                src={service.image}
-                alt={service.title}
-                className="w-24 h-24 object-cover"
-              />
-              <div className="flex-1 p-4">
-                <h3 className="font-medium text-gray-900 mb-1">{service.title}</h3>
-                <p className="text-sm text-gray-500">{service.desc}</p>
+            <div key={idx} onClick={() => navigate("/booking")}
+              className="bg-white rounded-2xl overflow-hidden flex cursor-pointer transition-all hover:shadow-md active:scale-[0.99]"
+              style={{ border: "1px solid rgba(0,0,0,0.07)", boxShadow: "var(--shadow-sm)" }}>
+              <ImageWithFallback src={service.image} alt={service.title} className="w-20 h-20 object-cover" />
+              <div className="flex-1 p-3.5">
+                <p className="font-semibold text-sm text-gray-900 mb-0.5">{service.title}</p>
+                <p className="text-xs text-gray-500">{service.desc}</p>
+              </div>
+              <div className="flex items-center pr-4">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Trust Badges */}
-      <div className="bg-white rounded-3xl p-6 border border-gray-100">
-        <h3 className="font-bold text-gray-900 mb-4">Why Choose ByStand?</h3>
-        <div className="space-y-4">
-          <div className="flex items-start gap-3">
-            <div className="bg-green-100 rounded-full p-2">
-              <CheckCircle className="w-5 h-5 text-green-600" />
+      {/* Why ByStand */}
+      <div className="bg-white rounded-3xl p-5" style={{ border: "1px solid rgba(0,0,0,0.07)", boxShadow: "var(--shadow-sm)" }}>
+        <h3 className="text-sm font-bold text-gray-900 mb-4">Why ByStand?</h3>
+        <div className="space-y-3.5">
+          {[
+            { icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", title: "KYC Verified", desc: "All professionals verified" },
+            { icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", title: "Background Checked", desc: "Thoroughly vetted for safety" },
+            { icon: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z", title: "Rated 4.8/5", desc: "Loved by our users" },
+          ].map(item => (
+            <div key={item.title} className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0" style={{ background: "var(--color-primary-highlight)" }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d={item.icon} />
+                </svg>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-gray-900">{item.title}</p>
+                <p className="text-xs text-gray-500">{item.desc}</p>
+              </div>
             </div>
-            <div>
-              <p className="font-medium text-gray-900">KYC Verified</p>
-              <p className="text-sm text-gray-500">All professionals verified</p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <div className="bg-blue-100 rounded-full p-2">
-              <Shield className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Background Checked</p>
-              <p className="text-sm text-gray-500">Thoroughly vetted for safety</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-
-      {/* Join & Earn CTA */}
-      <button
-        onClick={() => navigate("/join-and-earn")}
-        className="w-full mt-6 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-2xl p-4 text-center"
-      >
-        <p className="font-medium">Want to become a ByStander?</p>
-        <p className="text-sm text-purple-100">Join & Earn with Us</p>
-      </button>
-
-      {/* AI Floating Chat Bubble — fixed bottom-right, Home page only */}
-      <button
-        onClick={handleAiBubbleClick}
-        aria-label="Open AI assistant"
-        className="fixed bottom-24 right-5 z-50 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center"
-        style={{
-          boxShadow: aiRipple
-            ? "0 0 0 12px rgba(37,99,235,0.15), 0 0 0 24px rgba(37,99,235,0.07), 0 4px 16px rgba(0,0,0,0.12)"
-            : "0 4px 16px rgba(0,0,0,0.12)",
-          transition: "box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.15s ease",
-          transform: aiRipple ? "scale(0.93)" : "scale(1)",
-        }}
-      >
-        <img
-          src={logoHeartSvg}
-          alt="AI Assistant"
-          className="w-7 h-7 object-contain"
-        />
-      </button>
     </div>
   );
 }
